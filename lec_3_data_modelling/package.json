@@ -1,15 +1,11 @@
 {
-  "name": "lec_3_data_modelling",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "express-simple-starter",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^4.18.2",
+    "mongoose": "^9.10.3"
   }
 }
