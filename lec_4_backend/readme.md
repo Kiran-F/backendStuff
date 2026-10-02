@@ -36,3 +36,7 @@ Environment Security: Use a .env file for sensitive keys. Since .env files shoul
 Development Tools: Install Nodemon as a dev-dependency to automatically restart the server during development.
 Code Consistency: Use Prettier to enforce formatting rules across the team. Create .prettierrc for configuration and .prettierignore to exclude files like .env or node_modules from formatting.
 Folder Tracking: Use a .gitkeep file in empty directories to ensure Git tracks them for deployment.
+
+
+app -> express.js
+database connection -> mongoose
