@@ -40,3 +40,40 @@ Folder Tracking: Use a .gitkeep file in empty directories to ensure Git tracks t
 
 app -> express.js
 database connection -> mongoose
+
+
+
+The Relationship in Simple Terms
+• Cookie: The physical envelope. It is just a storage location in the browser that automatically flies back and forth between the browser and the server.
+• Session: A "Server-Side" approach. The data lives on the server's computer, and the cookie just carries an ID number to look it up.
+• Token: A "Client-Side" approach. The data lives directly inside the token itself, acting like a self-contained, digital passport. The cookie is often used to safely hold this passport.
+
+
+
+We have two approaches: session approach and JWT appraoch.
+That is the core difference between the two systems:
+• Session Approach: Every single request requires a database or memory lookup just to answer the question: "Who owns this Session ID, and are they logged in?" [A1]
+• JWT Approach: The server decodes the token, sees the valid signature, and answers its own question: "The signature is real, so this token tells me exactly who you are and that you are logged in." No query needed [A1].
+
+
+
+
+
+
+
+The Token Approach (The Digital Passport)
+This is the modern method (often using JWTs).
+
+------When the User Logs In--------
+1. The user types their username and password and hits Submit.
+2. The server verifies the password is correct.
+3. Instead of saving anything in its database, the server creates a Token. Inside this token, it writes: "This is John Doe, User ID 55".
+4. The server locks this token with a secret digital signature that only the server knows.
+5. The server places this Token inside a Cookie and sends it to the browser
+
+
+--------When the User Makes a Request (e.g., viewing their profile):-------
+1. The browser automatically attaches the Cookie (containing the encrypted Token) to the request.
+2. Your server receives the request. app.use(cookieParser()) extracts the token.
+3. The server checks the digital signature. If the signature matches, the server trusts the data inside it without looking at a database.
+4. It reads "This is John Doe", and instantly sends John's profile data back

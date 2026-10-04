@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 // import { DB_NAME } from "./constants";
 import connectDB from "./db/db.js"
+import app from "app.js"
 
 // require('dotenv').config({path: './env'}) //this works fine but disturbs the code structure so we use import code
 //We try to load .env environment variables as soon as possible, so that as the app loads, the env variables are made available to all
@@ -12,6 +13,20 @@ dotenv.config({
 
 
 connectDB()
+.then(() => {
+    // listen for errors firt
+    app.on("error", (error) => {
+        console.log("ERROR: ", error)
+        throw error
+    })
+
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Serve at http://localhost:${process.env.PORT}`);
+    })
+})
+.catch((err) => {
+    console.log("MONGO DB connection failed !!! ", err)
+})
 
 
 
