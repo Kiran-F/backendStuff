@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 // import { DB_NAME } from "./constants";
 import connectDB from "./db/db.js"
-import app from "app.js"
+import { app } from "./app.js"
 
 // require('dotenv').config({path: './env'}) //this works fine but disturbs the code structure so we use import code
 //We try to load .env environment variables as soon as possible, so that as the app loads, the env variables are made available to all
@@ -17,7 +17,7 @@ connectDB()
     // listen for errors firt
     app.on("error", (error) => {
         console.log("ERROR: ", error)
-        throw error
+        throw new error
     })
 
     app.listen(process.env.PORT || 8000, () => {
@@ -33,7 +33,7 @@ connectDB()
 
 
 /*
-The following code is good to go but is making index.js over saturated.
+The following code is good to go but is making index.js over saturated, moving in ./db/db.js
 // using iffi is a better approach, as will run immediately. using semicolon at the start is a good approach
 
 import express from "express"
